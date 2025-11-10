@@ -4,6 +4,7 @@ use App\Controllers\Admin\AdminController;
 use App\Controllers\Admin\CategoryController;
 use App\Controllers\Admin\ProductController;
 use App\Controllers\Admin\UserController;
+use App\Controllers\Admin\EstoqueController;
 use App\Controllers\AuthController;
 use App\Controllers\SiteController;
 use App\Middleware\AuthMiddleware;
@@ -60,6 +61,12 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $rou
 //            $users->addRoute('GET', '/edit', [UserController::class, 'edit']);
 //            $users->addRoute('POST', '/update', [UserController::class, 'update']);
             $users->addRoute('POST', '/delete', [UserController::class, 'delete']);
+        });
+
+        // ESTOQUE
+        $group->addGroup('/estoque', function (FastRoute\RouteCollector $estoque) {
+            $estoque->addRoute('GET', '', [EstoqueController::class, 'index']);
+            $estoque->addRoute(['GET', 'POST'], '/movimentar', [EstoqueController::class, 'movimentar']);
         });
     });
 });
