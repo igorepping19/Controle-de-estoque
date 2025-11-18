@@ -43,4 +43,23 @@ class ProductRepository {
         $row = $stmt->fetch();
         return $row ?: null;
     }
+
+    public function store(array $data): int {
+    $stmt = $this->pdo->prepare("
+        INSERT INTO products (name, price, category_id, image_path, created_at) 
+        VALUES (?, ?, ?, ?, NOW()) ");
+    $stmt->execute([$data['name'], $data['price'], $data['category_id'], $data['image_path']]);
+    $productId = $this->pdo->lastInsertId();
+    // SALVA ESTOQUE INICIAL
+    $this->saveStock($productId, (int)($data['quantity'] ?? 0));
+    return $productId;
+    }
+
+    private function saveStock(int $productId, int $quantity): void {
+    $stmt = $this->pdo->prepare("
+        INSERT INTO estoque (produto_id, quantidade, estoque_minimo, created_at) 
+        VALUES (?, ?, 5, NOW())
+        ON DUPLICATE KEY UPDATE quantidade = VALUES(quantidade), updated_at = NOW() ");
+    $stmt->execute([$productId, $quantity]);
+    }
 }

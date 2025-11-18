@@ -21,6 +21,25 @@
                     <input type="text" class="form-control"
                            value="R$ <?= number_format((float)$product['price'], 2, ',', '.') ?>" readonly>
                 </div>
+
+                <!-- CAMPO DE ESTOQUE ADICIONADO (100% integrado ao seu estilo) -->
+                <div class="mb-3">
+                    <label class="form-label"><strong>Estoque Atual:</strong></label>
+                    <div class="input-group">
+                        <input type="text" class="form-control text-center fw-bold 
+                            <?= ($product['quantity'] ?? 0) > 0 ? 'text-success' : 'text-danger' ?>"
+                               value="<?= $this->e($product['quantity'] ?? 0) ?> unidade(s)" readonly>
+                        <span class="input-group-text">
+                            <i class="bi bi-box-seam-fill"></i>
+                        </span>
+                    </div>
+                    <?php if (($product['quantity'] ?? 0) <= 0): ?>
+                        <small class="text-danger"><i class="bi bi-exclamation-triangle"></i> Produto sem estoque</small>
+                    <?php elseif (($product['quantity'] ?? 0) <= 5): ?>
+                        <small class="text-warning"><i class="bi bi-exclamation-circle"></i> Estoque baixo</small>
+                    <?php endif; ?>
+                </div>
+
                 <?php if (!empty($product['image_path'])): ?>
                     <div class="mb-3">
                         <label class="form-label"><strong>Imagem:</strong></label><br>

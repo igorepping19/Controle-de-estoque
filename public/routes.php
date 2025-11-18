@@ -67,6 +67,7 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $rou
         $group->addGroup('/estoque', function (FastRoute\RouteCollector $estoque) {
             $estoque->addRoute('GET', '', [EstoqueController::class, 'index']);
             $estoque->addRoute(['GET', 'POST'], '/movimentar', [EstoqueController::class, 'movimentar']);
+            $estoque->addRoute('GET', '/show', [EstoqueController::class, 'show']);
         });
     });
 });

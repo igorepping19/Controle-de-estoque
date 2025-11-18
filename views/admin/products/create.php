@@ -20,6 +20,19 @@
                     <?php if (!empty($errors['price'])): ?>
                         <div class="text-danger"><?= $this->e($errors['price']) ?></div><?php endif; ?>
                 </div>
+                <div class="col-md-6 mb-3">
+                    <label for="quantity" class="form-label">Quantidade Inicial em Estoque *</label>
+                    <input type="number" 
+                        class="form-control" 
+                        id="quantity" 
+                        name="quantity" 
+                        min="0" 
+                        value="<?= $this->e($old['quantity'] ?? '0') ?>" 
+                        required>
+                    <?php if (!empty($errors['quantity'])): ?>
+                        <div class="text-danger"><?= $this->e($errors['quantity']) ?></div>
+                        <?php endif; ?>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-6 mb-3">

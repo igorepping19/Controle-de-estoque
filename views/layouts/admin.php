@@ -192,6 +192,10 @@ $auth = AuthService::user();
                 <i class="bi bi-box-seam"></i>
                 <span>Categorias</span>
             </a>
+            <a class="nav-link" href="/admin/estoque" data-page="estoque">
+                <i class="bi bi-box-seam"></i>
+                <span>Estoque</span>
+            </a>
         </nav>
     </aside>
 
