@@ -17,8 +17,8 @@
                         <?php if (!empty($produto['image_path'])): ?>
                             <p class="mb-2">
                                 <strong>Imagem:</strong><br>
-                                <img src="<?= $this->e($produto['image_path']) ?>" 
-                                     class="img-thumbnail" style="max-height: 120px;" alt="Produto">
+                                <img src="<?= $this->e($produto['image_path']) ?>"
+                                    class="img-thumbnail" style="max-height: 120px;" alt="Produto">
                             </p>
                         <?php endif; ?>
                     </div>
@@ -41,7 +41,7 @@
                             </span>
                         </div>
                         <p class="mb-1"><strong>Mínimo permitido:</strong> <?= $estoque['minimo'] ?></p>
-                        <p class="mb-1"><strong>Última atualização:</strong> 
+                        <p class="mb-1"><strong>Última atualização:</strong>
                             <?= $estoque['updated_at'] ? $this->e($estoque['updated_at']) : 'Nunca' ?>
                         </p>
                     </div>
@@ -55,12 +55,12 @@
                 <i class="bi bi-arrow-left-right"></i> Movimentações Rápidas
             </h6>
             <div class="d-flex gap-2 flex-wrap">
-                <a href="/admin/estoque/movimentar?id=<?= $produto['id'] ?>&tipo=entrada" 
-                   class="btn btn-success">
+                <a href="/admin/estoque/movimentar?id=<?= $produto['id'] ?>&tipo=entrada"
+                    class="btn btn-success">
                     <i class="bi bi-plus-lg"></i> Entrada
                 </a>
-                <a href="/admin/estoque/movimentar?id=<?= $produto['id'] ?>&tipo=saida" 
-                   class="btn btn-warning">
+                <a href="/admin/estoque/movimentar?id=<?= $produto['id'] ?>&tipo=saida"
+                    class="btn btn-warning">
                     <i class="bi bi-dash-lg"></i> Saída
                 </a>
                 <a href="/admin/estoque" class="btn btn-secondary">

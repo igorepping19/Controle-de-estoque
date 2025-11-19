@@ -58,8 +58,8 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $rou
             $users->addRoute('GET', '/create', [UserController::class, 'create']);
             $users->addRoute('POST', '/store', [UserController::class, 'store']);
             $users->addRoute('GET', '/show', [UserController::class, 'show']);
-//            $users->addRoute('GET', '/edit', [UserController::class, 'edit']);
-//            $users->addRoute('POST', '/update', [UserController::class, 'update']);
+            //            $users->addRoute('GET', '/edit', [UserController::class, 'edit']);
+            //            $users->addRoute('POST', '/update', [UserController::class, 'update']);
             $users->addRoute('POST', '/delete', [UserController::class, 'delete']);
         });
 
@@ -102,7 +102,10 @@ switch ($routeInfo[0]) {
         foreach ($protectedRoutes as $prefix) {
             if (str_starts_with($uri, $prefix)) {
                 $redirect = AuthMiddleware::requireLogin();
-                if ($redirect) { $redirect->send(); exit; }
+                if ($redirect) {
+                    $redirect->send();
+                    exit;
+                }
                 break;
             }
         }

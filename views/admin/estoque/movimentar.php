@@ -29,15 +29,14 @@
 
             <div class="mb-3">
                 <label class="form-label">Quantidade</label>
-                <input 
-                    type="number" 
-                    name="quantidade" 
+                <input
+                    type="number"
+                    name="quantidade"
                     class="form-control <?= isset($errors['quantidade']) ? 'is-invalid' : '' ?>"
-                    min="1" 
-                    required 
+                    min="1"
+                    required
                     autofocus
-                    value="<?= $old['quantidade'] ?? '' ?>"
-                >
+                    value="<?= $old['quantidade'] ?? '' ?>">
                 <?php if (isset($errors['quantidade'])): ?>
                     <div class="invalid-feedback"><?= $this->e($errors['quantidade']) ?></div>
                 <?php endif; ?>

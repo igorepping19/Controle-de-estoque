@@ -23,13 +23,13 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="quantidade" class="form-label">Quantidade *</label>
-                    <input type="number" 
-                           class="form-control <?= !empty($errors['quantidade']) ? 'is-invalid' : '' ?>" 
-                           id="quantidade" 
-                           name="quantidade" 
-                           min="1" 
-                           value="<?= $this->e($old['quantidade'] ?? '') ?>" 
-                           required>
+                    <input type="number"
+                        class="form-control <?= !empty($errors['quantidade']) ? 'is-invalid' : '' ?>"
+                        id="quantidade"
+                        name="quantidade"
+                        min="1"
+                        value="<?= $this->e($old['quantidade'] ?? '') ?>"
+                        required>
                     <?php if (!empty($errors['quantidade'])): ?>
                         <div class="invalid-feedback">
                             <?= $this->e($errors['quantidade']) ?>
@@ -56,7 +56,7 @@
 <!-- Validação Bootstrap -->
 <script>
     // Validação nativa do Bootstrap
-    (function () {
+    (function() {
         'use strict'
         const forms = document.querySelectorAll('.needs-validation')
         Array.from(forms).forEach(form => {

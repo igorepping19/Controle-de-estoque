@@ -26,38 +26,38 @@
                     </thead>
                     <tbody>
                         <?php foreach ($products as $p): ?>
-                        <tr>
-                            <td><?= $p['id'] ?></td>
-                            <td>
-                                <img src="<?= $this->e($p['image_path'] ?? '/img/no-image.png') ?>" width="50" class="rounded">
-                            </td>
-                            <td><strong><?= $this->e($p['name']) ?></strong></td>
-                            <td>Sem categoria</td>
-                            <td>R$ <?= number_format($p['price'], 2, ',', '.') ?></td>
-                            <td>
-                                <span class="badge <?= ($p['qtd'] ?? 0) > ($p['minimo'] ?? 0) ? 'bg-success' : 'bg-warning' ?>">
-                                    <?= $p['qtd'] ?? 0 ?>
-                                </span>
-                            </td>
-                            <td>
-                                <div class="d-flex gap-1">
-                                    <a href="/admin/products/edit?id=<?= $p['id'] ?>" class="btn btn-sm btn-warning" title="Editar">Editar</a>
-                                    
-                                    <!-- NOVO BLOCO: FORMULÁRIO POST para exclusão -->
-                                    <form method="POST" action="/admin/products/delete" style="display:inline;">
-                                        <!-- O token CSRF deve ser passado para a view pelo Controller. Ele é essencial. -->
-                                        <input type="hidden" name="_csrf" value="<?= $csrf ?>">
-                                        <!-- O ID é o parâmetro 'id' que o Controller::delete espera -->
-                                        <input type="hidden" name="id" value="<?= $p['id'] ?>">
-                                        <button type="submit" 
-                                                class="btn btn-sm btn-danger" 
+                            <tr>
+                                <td><?= $p['id'] ?></td>
+                                <td>
+                                    <img src="<?= $this->e($p['image_path'] ?? '/img/no-image.png') ?>" width="50" class="rounded">
+                                </td>
+                                <td><strong><?= $this->e($p['name']) ?></strong></td>
+                                <td>Sem categoria</td>
+                                <td>R$ <?= number_format($p['price'], 2, ',', '.') ?></td>
+                                <td>
+                                    <span class="badge <?= ($p['qtd'] ?? 0) > ($p['minimo'] ?? 0) ? 'bg-success' : 'bg-warning' ?>">
+                                        <?= $p['qtd'] ?? 0 ?>
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="d-flex gap-1">
+                                        <a href="/admin/products/edit?id=<?= $p['id'] ?>" class="btn btn-sm btn-warning" title="Editar">Editar</a>
+
+                                        <!-- NOVO BLOCO: FORMULÁRIO POST para exclusão -->
+                                        <form method="POST" action="/admin/products/delete" style="display:inline;">
+                                            <!-- O token CSRF deve ser passado para a view pelo Controller. Ele é essencial. -->
+                                            <input type="hidden" name="_csrf" value="<?= $csrf ?>">
+                                            <!-- O ID é o parâmetro 'id' que o Controller::delete espera -->
+                                            <input type="hidden" name="id" value="<?= $p['id'] ?>">
+                                            <button type="submit"
+                                                class="btn btn-sm btn-danger"
                                                 onclick="return confirm('Tem certeza que deseja excluir o produto: <?= $this->e($p['name']) ?>?');">
-                                            Excluir
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
+                                                Excluir
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>

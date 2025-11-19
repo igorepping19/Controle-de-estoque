@@ -46,11 +46,11 @@ class EstoqueController
         // Buscando o nome do produto.
         // Se este método 'findProductName' retorna apenas a string do nome,
         // precisamos montar o array do produto completo:
-        $nomeProduto = $this->repo->findProductName($id); 
+        $nomeProduto = $this->repo->findProductName($id);
         if (!$nomeProduto) {
             return new RedirectResponse('/admin/estoque');
         }
-        
+
         // 🚨 CORREÇÃO: Criação do array $produto que inclui 'id' e 'nome'.
         // Este array será passado para a View, satisfazendo as chaves $produto['id'] e $produto['nome'].
         $produto = [
@@ -61,10 +61,10 @@ class EstoqueController
         if ($request->isMethod('POST')) {
             $quantidade = (int)$request->request->get('quantidade', 0);
             $observacao = $request->request->get('observacao', '');
-            
+
             // Certifique-se de validar $observacao também se for necessário no service
-            $errors = $this->service->validate(['quantidade' => $quantidade, 'observacao' => $observacao]); 
-            
+            $errors = $this->service->validate(['quantidade' => $quantidade, 'observacao' => $observacao]);
+
             if ($errors) {
                 $html = $this->view->render('admin/estoque/movimentar', [
                     'produto' => $produto, // Usando a nova variável $produto

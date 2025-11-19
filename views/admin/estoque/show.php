@@ -33,9 +33,9 @@
 
                         <?php if (!empty($produto['image_path'])): ?>
                             <div class="text-center mb-4">
-                                <img src="<?= $this->e($produto['image_path']) ?>" 
-                                     class="img-fluid rounded shadow-sm" 
-                                     style="max-height: 200px;" alt="<?= $this->e($produto['nome']) ?>">
+                                <img src="<?= $this->e($produto['image_path']) ?>"
+                                    class="img-fluid rounded shadow-sm"
+                                    style="max-height: 200px;" alt="<?= $this->e($produto['nome']) ?>">
                             </div>
                         <?php endif; ?>
 
