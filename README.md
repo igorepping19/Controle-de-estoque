@@ -1,43 +1,54 @@
-Controle de Estoque – Painel Administrativo (PHP Puro)
-Projeto completo e 100% funcional desenvolvido do zero com PHP 8+, arquitetura MVC manual, League\Plates (templates), Composer e MySQL.
-Funcionalidades implementadas
+<div align="center">
 
-Login seguro com sessão e proteção de rotas admin
-CRUD completo de Produtos e Categorias
-Sistema de controle de estoque com quantidade atual e estoque mínimo
-Movimentação de estoque (Entrada e Saída) com formulário dedicado
-Validação de dados e feedback visual de erros
-Interface responsiva e moderna (Bootstrap 5 + layout admin personalizado)
-Alertas visuais para produtos com estoque baixo
-Detalhes completos de cada produto (imagem, preço, categoria, estoque, data de criação/atualização)
+# Controle de Estoque  
+### Painel Administrativo em PHP Puro
 
-Tecnologias utilizadas
+<p align="center">
+  <img src="https://img.shields.io/badge/PHP-8.1%2B-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP"/>
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL"/>
+  <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Bootstrap"/>
+  <img src="https://img.shields.io/badge/Composer-885630?style=for-the-badge&logo=composer&logoColor=white" alt="Composer"/>
+</p>
 
-PHP 8+ (sem framework)
-MySQL
-Composer
-League\Plates (motor de templates leve)
-Bootstrap 5 + Font Awesome
-Estrutura MVC manual (Controllers, Services, Repositories, Models)
-Rotas manuais (sem framework de roteamento)
-Sessões nativas do PHP
-Validação manual de formulários
+<img src="public/assets/img/screenshot.jpg" width="100%" alt="Preview do sistema" style="border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
 
-Como rodar o projeto
-Bashgit clone https://github.com/seu-usuario/controle-de-estoque.git
+> Sistema completo de controle de estoque com entrada/saída, CRUD de produtos e interface admin moderna — **feito do zero, sem Laravel, sem framework**.
+
+</div>
+
+## Funcionalidades
+
+- Login seguro com sessão
+- Cadastro completo de **Produtos** e **Categorias**
+- Controle de estoque com quantidade atual e estoque mínimo
+- Entrada e Saída de estoque com formulário dedicado
+- Validação de dados + mensagens de erro amigáveis
+- Alertas visuais para produtos com estoque baixo
+- Interface 100% responsiva (Bootstrap 5)
+- Painel admin elegante e intuitivo
+
+## Tecnologias
+
+| Tecnologia       | Uso                          |
+|------------------|------------------------------|
+| PHP 8+           | Lógica e backend             |
+| MySQL            | Banco de dados               |
+| League\Plates    | Motor de templates           |
+| Bootstrap 5      | Design responsivo            |
+| Composer         | Gerenciamento de dependências|
+
+## Como rodar (2 minutos)
+
+```bash
+git clone https://github.com/SEU_USUARIO/controle-de-estoque.git
 cd controle-de-estoque
 
-# Copia o arquivo de configuração
+# Configuração
 cp .env.example .env
+# Edite o .env com seus dados do banco
 
-# Edita o .env com os dados do seu banco MySQL
-# Cria o banco de dados (ex: controle_estoque)
-
-# Instala as dependências
+# Dependências
 composer install
 
-# Importa a estrutura do banco de dados
-# (execute o SQL que está na pasta database/ ou use as migrations se houver)
-
-# Inicia o servidor embutido do PHP
+# Servidor
 php -S localhost:8000 -t public
