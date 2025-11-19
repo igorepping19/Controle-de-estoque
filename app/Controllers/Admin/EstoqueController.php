@@ -17,18 +17,17 @@ class EstoqueController
 
     public function __construct()
     {
-        $this->view = new View();
-        $this->repo = new EstoqueRepository();
+        $this->view    = new View();
+        $this->repo    = new EstoqueRepository();
         $this->service = new EstoqueService();
     }
 
     public function index(Request $request): Response
     {
-        // CORRIGIDO: usamos $this->repo (a variável que foi instanciada)
-        $products = $this->repo->getAllWithStock();
+        $estoque = $this->repo->getAllWithStock()  ?? [];
 
         $html = $this->view->render('admin/estoque/index', [
-            'products' => $products ?? [],        // ← nome correto da variável
+            'estoque' => $estoque,
             'title'    => 'Controle de Estoque'
         ]);
 
@@ -44,36 +43,53 @@ class EstoqueController
             return new RedirectResponse('/admin/estoque');
         }
 
-        $nomeProduto = $this->repo->findProductName($id);
+        // Buscando o nome do produto.
+        // Se este método 'findProductName' retorna apenas a string do nome,
+        // precisamos montar o array do produto completo:
+        $nomeProduto = $this->repo->findProductName($id); 
         if (!$nomeProduto) {
             return new RedirectResponse('/admin/estoque');
         }
+        
+        // 🚨 CORREÇÃO: Criação do array $produto que inclui 'id' e 'nome'.
+        // Este array será passado para a View, satisfazendo as chaves $produto['id'] e $produto['nome'].
+        $produto = [
+            'id' => $id,
+            'nome' => $nomeProduto
+        ];
 
         if ($request->isMethod('POST')) {
             $quantidade = (int)$request->request->get('quantidade', 0);
-
-            $errors = $this->service->validate(['quantidade' => $quantidade]);
+            $observacao = $request->request->get('observacao', '');
+            
+            // Certifique-se de validar $observacao também se for necessário no service
+            $errors = $this->service->validate(['quantidade' => $quantidade, 'observacao' => $observacao]); 
+            
             if ($errors) {
                 $html = $this->view->render('admin/estoque/movimentar', [
-                    'produto' => ['nome' => $nomeProduto],
+                    'produto' => $produto, // Usando a nova variável $produto
                     'tipo'    => $tipo,
                     'title'   => ucfirst($tipo) . ' de Estoque',
                     'errors'  => $errors,
-                    'old'     => $request->request->all()
+                    'old'     => $request->request->all(),
+                    'csrf'    => 'TODO: Obter o token CSRF' // Você deve obter o token real aqui
                 ]);
                 return new Response($html, 422);
             }
 
-            $this->repo->movimentar($id, $quantidade, $tipo);
+            // Ação de Movimentação do Estoque
+            $this->repo->movimentar($id, $quantidade, $tipo, $observacao);
             return new RedirectResponse('/admin/estoque');
         }
 
+        // Renderização para o método GET (primeira carga da página)
         $html = $this->view->render('admin/estoque/movimentar', [
-            'produto' => ['nome' => $nomeProduto],
+            'produto' => $produto, // Usando a nova variável $produto
             'tipo'    => $tipo,
             'title'   => ucfirst($tipo) . ' de Estoque',
             'errors'  => [],
-            'old'     => []
+            'old'     => [],
+            'csrf'    => 'TODO: Obter o token CSRF' // Você deve obter o token real aqui
         ]);
 
         return new Response($html);

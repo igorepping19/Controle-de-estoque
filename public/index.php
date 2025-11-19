@@ -1,6 +1,10 @@
 <?php
 declare(strict_types=1);
 
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
+
 require __DIR__ . '/../vendor/autoload.php';
 
 use Dotenv\Dotenv;

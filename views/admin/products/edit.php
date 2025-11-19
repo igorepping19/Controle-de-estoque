@@ -31,17 +31,6 @@
 
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="quantity" class="form-label">Quantidade em Estoque *</label>
-                    <input type="number" min="0" class="form-control <?= !empty($errors['quantity']) ? 'is-invalid' : '' ?>"
-                           id="quantity" name="quantity" placeholder="0"
-                           value="<?= $this->e($old['quantity'] ?? $product['quantity'] ?? '0') ?>" required>
-                    <div class="form-text">Define ou atualiza o estoque atual do produto</div>
-                    <?php if (!empty($errors['quantity'])): ?>
-                        <div class="invalid-feedback"><?= $this->e($errors['quantity']) ?></div>
-                    <?php endif; ?>
-                </div>
-
-                <div class="col-md-6 mb-3">
                     <label for="category_id" class="form-label">Categoria *</label>
                     <select class="form-select <?= !empty($errors['category_id']) ? 'is-invalid' : '' ?>" 
                             id="category_id" name="category_id" required>
@@ -75,16 +64,8 @@
                         <div class="invalid-feedback"><?= $this->e($errors['image']) ?></div>
                     <?php endif; ?>
                 </div>
-
-                <div class="col-md-6 mb-4">
-                    <div class="alert alert-info border-0">
-                        <i class="bi bi-info-circle"></i>
-                        <strong>Dica:</strong> Ao alterar a quantidade aqui, o estoque será atualizado imediatamente.
-                        Use o módulo <strong>Estoque</strong> para entradas e saídas com histórico.
-                    </div>
-                </div>
             </div>
-
+            
             <div class="d-flex flex-wrap gap-3">
                 <button type="submit" class="btn btn-primary btn-lg">
                     <i class="bi bi-check-lg"></i> Atualizar Produto
