@@ -10,8 +10,6 @@
   <img src="https://img.shields.io/badge/Composer-885630?style=for-the-badge&logo=composer&logoColor=white" alt="Composer"/>
 </p>
 
-<img src="public/assets/img/screenshot.jpg" width="100%" alt="Preview do sistema" style="border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-
 > Sistema completo de controle de estoque com entrada/saída, CRUD de produtos e interface admin moderna — **feito do zero, sem Laravel, sem framework**.
 
 </div>
