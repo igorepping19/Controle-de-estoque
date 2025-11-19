@@ -1,46 +1,43 @@
-fiz uma copia do projeto do professor israel e coloquei no meu repositorio para fazer as devidas alteracoes para entregar no dia 19.
+Controle de Estoque – Painel Administrativo (PHP Puro)
+Projeto completo e 100% funcional desenvolvido do zero com PHP 8+, arquitetura MVC manual, League\Plates (templates), Composer e MySQL.
+Funcionalidades implementadas
 
-aproveitando a ideia do professor irei criar um controle de estoque que depois de pronto ira se comunicar com o e-commerce que estou criando.
+Login seguro com sessão e proteção de rotas admin
+CRUD completo de Produtos e Categorias
+Sistema de controle de estoque com quantidade atual e estoque mínimo
+Movimentação de estoque (Entrada e Saída) com formulário dedicado
+Validação de dados e feedback visual de erros
+Interface responsiva e moderna (Bootstrap 5 + layout admin personalizado)
+Alertas visuais para produtos com estoque baixo
+Detalhes completos de cada produto (imagem, preço, categoria, estoque, data de criação/atualização)
 
-seguir os passos do readme do professor para dar certo.
-criar a tabela estoque.
-avaliar a funcinalidade e o layout da pagiina.
+Tecnologias utilizadas
 
-// instruções professor //
+PHP 8+ (sem framework)
+MySQL
+Composer
+League\Plates (motor de templates leve)
+Bootstrap 5 + Font Awesome
+Estrutura MVC manual (Controllers, Services, Repositories, Models)
+Rotas manuais (sem framework de roteamento)
+Sessões nativas do PHP
+Validação manual de formulários
 
-Executar o comando composer install para instalar as dependências do projeto.
+Como rodar o projeto
+Bashgit clone https://github.com/seu-usuario/controle-de-estoque.git
+cd controle-de-estoque
 
-Copiar .env.example para .env
+# Copia o arquivo de configuração
+cp .env.example .env
 
-Configurar conexão com banco de dados com variáveis DB_
+# Edita o .env com os dados do seu banco MySQL
+# Cria o banco de dados (ex: controle_estoque)
 
-Alterar chave CSRF_KEY no arquivo .env | IT-Tools
+# Instala as dependências
+composer install
 
-Testar conexão e migração de dados
+# Importa a estrutura do banco de dados
+# (execute o SQL que está na pasta database/ ou use as migrations se houver)
 
-| Linux: vendor/bin/phinx migrate --dry-run
-
-| Windows: php vendor/bin/phinx migrate --dry-run
-
-Rodar servidor embutido do php (utilizar url APP_URL do .env)
-| php -S localhost:8001 -t public
-
-Executar migração de dados
-| Linux: vendor/bin/phinx migrate
-
-| Windows: php vendor/bin/phinx migrate
-
-Criar primeiro usuário
-Acesse: localhost:8001/auth/create
-
-E-mail: teste@teste.com
-Senha: teste123
-Routes (routes.php)
-Controller (ProductController > CategoryController)
-Migrations (db/migrations)
-Repository (ProductRepository > CategoryRepository) ----
-Model (Product > Category)
-Service (ProductService > CategoryService)
-Views (duplicar - views/admin/products > categories)
-Controller (views)
-Views (alterar)
+# Inicia o servidor embutido do PHP
+php -S localhost:8000 -t public
